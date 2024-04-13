@@ -16,4 +16,15 @@ public:
 
 	Address(std::string house, std::string street, std::string city, std::string country);
 	Address() {}
+
+	// Getters
+	std::string get_house() const;
+	std::string get_street() const;
+	std::string get_city() const;
+	std::string get_country() const;
+	// Setters
+	void set_house(std::string house);
+	void set_street(std::string street);
+	void set_city(std::string city);
+	void set_country(std::string country);
 };
