@@ -1,31 +1,83 @@
 #include "Contact.h"
 
-/*
-*	Implement a constructor that initializes all the Contact parts, including address. Call the setter to set values
-*	as they have the logic to check correct input
-*	Declaration is given in Contact.h
-*/
+// Constructors
+Contact::Contact()
+{
+	first_name = "";
+	last_name = "";
+	mobile_number = "";
+	email_address = "";
+	address = nullptr;
+}
 
+Contact::Contact(std::string first_name, std::string last_name, std::string mobile_number, std::string email_address, Address *address)
+{
+	set_first_name(first_name);
+	set_last_name(last_name);
+	set_mobile_number(mobile_number);
+	set_email_address(email_address);
+	set_address(address);
+}
 
-/*
-*	Implement getter/setters for all the member variables of Contact. Also declare them in the Contact.h header file
-*	In each setter, do not set value if string is empty ("" 0 size). 
-*   Check in phone number setter, Phone number must be 11 digits
-*/
+// Destructor
+Contact::~Contact()
+{
+	delete address;
+}
 
+// Setters
+void Contact::set_first_name(std::string first_name)
+{
+	if (first_name.size() != 0)
+		this->first_name = first_name;
+}	
+void Contact::set_last_name(std::string last_name)
+{
+	if (last_name.size() != 0)
+		this->last_name = last_name;
+}
+void Contact::set_mobile_number(std::string mobile_number)
+{
+	if (mobile_number.size() != 0 && mobile_number.size() == 11)
+		this->mobile_number = mobile_number;
+}
+void Contact::set_email_address(std::string email_address)
+{
+	if (email_address.size() != 0)
+		this->email_address = email_address;
+}
+void Contact::set_address(Address *address)
+{
+	if (address != nullptr)
+		this->address = address;
+}
 
+// Getters
+std::string Contact::get_first_name() const { return first_name; }
+std::string Contact::get_last_name() const { return last_name; }
+std::string Contact::get_mobile_number() const { return mobile_number; }
+std::string Contact::get_email_address() const { return email_address; }
+Address* Contact::get_address() const { return address; }
 
-/*
-*	Implement the equals function(as declared in header file) that takes a 
-*   Contact object and checks if it is equal to current object refered by (this pointer). 
-*   Compare all the attributes.
-*   For comparing address of contact you can call the equals function of the Address object;
-*   For example: this.address.equals
-*/
+bool Contact::equals(Contact contact)
+{
+	if (this->first_name == contact.first_name && this->last_name == contact.last_name && this->mobile_number == contact.mobile_number && this->email_address == contact.email_address && this->address->equals(*contact.address))
+	{
+		return true;
+	}
+	return false;
+}
 
 Contact* Contact::copy_contact()
 {
-	/*
-		Return a new object(deep copy of "this"[due to Address pointer, which should also be copied])
-	*/
+	Contact* copiedContact = new Contact();
+	copiedContact->first_name = this->first_name;
+	copiedContact->last_name = this->last_name;
+	copiedContact->mobile_number = this->mobile_number;
+	copiedContact->email_address = this->email_address;
+	copiedContact->address = new Address(this->address->get_house(), 
+		this->address->get_street(), 
+		this->address->get_city(), 
+		this->address->get_country());
+	return copiedContact;
 }
