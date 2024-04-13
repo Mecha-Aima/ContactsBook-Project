@@ -59,6 +59,7 @@ std::string Contact::get_mobile_number() const { return mobile_number; }
 std::string Contact::get_email_address() const { return email_address; }
 Address* Contact::get_address() const { return address; }
 
+// equals() method to test if passed contact is equal to *this
 bool Contact::equals(Contact contact)
 {
 	if (this->first_name == contact.first_name && this->last_name == contact.last_name && this->mobile_number == contact.mobile_number && this->email_address == contact.email_address && this->address->equals(*contact.address))
@@ -68,6 +69,7 @@ bool Contact::equals(Contact contact)
 	return false;
 }
 
+// Return a deep copy of *this
 Contact* Contact::copy_contact()
 {
 	Contact* copiedContact = new Contact();

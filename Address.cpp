@@ -35,7 +35,7 @@ void Address::set_country(std::string country){
 	this->country = country;
 }
 
-
+// equals() method to check if passed address is equal to *this
 bool Address::equals(const Address& address)
 {
 	if (this == &address) {
@@ -51,13 +51,14 @@ bool Address::equals(const Address& address)
 	return true;
 }
 
+// print the address in one line in this format: House, Street, City, Country
 void Address::print_address()
 {
 	std::cout << house << ", " << street << ", " << city << ", " << country << std::endl;
 }
 
+// Return a copy of current object
 Address Address::copy_address()
 {
-	// Return a copy of current object
 	return Address(house, street, city, country);
 }
