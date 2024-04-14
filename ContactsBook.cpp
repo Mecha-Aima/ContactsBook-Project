@@ -1,5 +1,22 @@
 #include "ContactsBook.h"
 
+
+// Constructor
+ContactsBook::ContactsBook(int size_of_list)
+{
+	// Initialize the contacts_list array, also initialize the size and count members accordingly
+	contacts_list = new Contact[size_of_list];
+	size_of_contacts = size_of_list;
+	contacts_count = 0;
+}
+
+// Destructor
+ContactsBook::~ContactsBook()
+{
+	// Delete the contacts_list array
+	delete[] contacts_list;
+}
+
 void ContactsBook::add_contact(const Contact& contact)
 {
 	// Check if the list is full, if it is full call the resize function
@@ -22,29 +39,24 @@ int ContactsBook::total_contacts() const
 bool ContactsBook::full() const
 {
 	// Return true if list is full, false otherwise
-	if(size_of_contacts == contacts_count)
-	{
-		return true;
-	}
-	return false;
+	return size_of_contacts == contacts_count;
 	
 }
 
 void ContactsBook::resize_list()
 {
 	// Allocate a temporary new array of double the current size
-	Contact *temp = new Contact[size_of_contacts * 2];
-	for (size_t i = 0; i < size_of_contacts; i++)
-	{
-		// copy the contacts from previous array to this array one by one get the copy of each contact using copy_contact function of Contact class
-		temp[i] = *(contacts_list[i].copy_contact());
-	}
-	// Delete the previous array
-	delete[] contacts_list;
-	// Assign the new temporary array to the contacts_list pointer
-	contacts_list = temp;
-	// Update the this->size_of_contacts with new size
-	size_of_contacts *= 2;
+	int new_size = size_of_contacts * 2;
+    Contact* temp_contacts_list = new Contact[new_size];
+	// Copy the contacts_list array to the new array
+    for (int i = 0; i < contacts_count; ++i) {
+        temp_contacts_list[i] = *(contacts_list[i].copy_contact());
+    }
+	// Delete the old array
+    delete[] contacts_list;
+	// Update the contacts_list pointer to point to the new array
+    contacts_list = temp_contacts_list;
+    size_of_contacts = new_size;
 }
 
 Contact* ContactsBook::search_contact(std::string first_name, std::string last_name)
@@ -73,6 +85,8 @@ Contact* ContactsBook::search_contact(std::string phone)
 			return contacts_list[i].copy_contact();
 		}
 	}
+	// If not found return nullptr
+	return nullptr;
 }
 
 Contact* ContactsBook::search_contact(const Address& address)
@@ -86,72 +100,85 @@ Contact* ContactsBook::search_contact(const Address& address)
 			return contacts_list[i].copy_contact();
 		}
 	}
+	// If not found return nullptr
+	return nullptr;
 }
 
-ContactsBook::ContactsBook(int size_of_list)
+Contact* ContactsBook::copy_list(Contact *contacts_list)
 {
-	// Initialize the contacts_list array, also initialize the size and count members accordingly
-	contacts_list = new Contact[size_of_list];
-	size_of_contacts = size_of_list;
-	contacts_count = 0;
+	// Implement this function to return a copy of the contacts_list array
+	// This function is used to create a copy of the contacts_list array before sorting
+	// So that the original insertion order is not changed
+	Contact *temp = new Contact[contacts_count];
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		temp[i] = *(contacts_list[i].copy_contact());
+	}
+	return temp;
+
 }
 
-ContactsBook::~ContactsBook()
-{
-	// Delete the contacts_list array
-	delete[] contacts_list;
+bool compare_contacts(Contact& contact1,Contact& contact2, std::string choice) {
+    if (choice == "first_name") {
+        return contact1.get_first_name() > contact2.get_first_name();
+    }
+    else if (choice == "last_name") {
+        return contact1.get_last_name() > contact2.get_last_name();
+    }
+    else {
+        return contact1.get_first_name() > contact2.get_first_name();
+    }
 }
 
 void ContactsBook::print_contacts_sorted(std::string choice)
 {
-	/*
-	*	Create a copy of this->contacts_list array here (do it by creating a new function that returns copy)
-	*	Call the sort function sort_contacts_list to sort the newly created copy
-	*	This copy is created to avoid changing the original insertion order of contact list
-	*	Then print the contacts in following format:
-	*	[First Name] [Last Name] [Mobile] [Email]
-	*	Call the address print function to print address on next line
-	*/
+	// Create a copy of this->contacts_list array
+	Contact *copy = copy_list(this->contacts_list);
+	// Call the sort function sort_contacts_list to sort the newly created copy
+	sort_contacts_list(copy, choice);
+	// Print the contacts in following format:
+	// [First Name] [Last Name] [Mobile] [Email]
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		std::cout << std::left << std::setw(10) << copy[i].get_first_name() << std::setw(10) << copy[i].get_last_name() << std::setw(14) << copy[i].get_mobile_number() << copy[i].get_email_address() << std::endl;
+		// Call the address print function to print address on next line
+		copy[i].get_address()->print_address();
+		std::cout << std::endl;
+	}
+	delete [] copy;
 }
 
 void ContactsBook::sort_contacts_list(Contact *contacts_list, std::string choice)
 {
-	/*
-		You should not duplicate the code to sort based on choices
-		Follow the strategy provided in manual/tutorial to avoid duplicating the code (Section B & E only)
-		Sort by the fist letter of first name or last name as given in choice
-	*/
+	// Bubble Sort
+	for (int i = 0; i < contacts_count - 1; ++i) {
+        for (int j = 0; j < contacts_count - i - 1; ++j) {
+            if (compare_contacts(contacts_list[j], contacts_list[j + 1], choice)) {
+                Contact temp = contacts_list[j];
+                contacts_list[j] = contacts_list[j + 1];
+                contacts_list[j + 1] = temp;
+            }
+        }
+    }
+	
 }
 
-void ContactsBook::merge_duplicates() 
-{
-	// Implement this function that finds and merges all the duplicates
-	// Duplicate means exact equal
-	// If there are three copies of a Contact, then only one should remain
-	// For example: If total contact are 10, and 2 contacts are same, after removing duplicates
-	// 9 contacts will be left; and the this->contacts_count of list will 9
-	// At the end display contacts merged, and count of merged contacts
-
-	// Iterate through the contacts list to look for duplicates
-	for (size_t i = 0; i < contacts_count; i++)
-	{
-		for (size_t j = i + 1; j < contacts_count; j++)
-		{
-			// If found a duplicate
-			if (contacts_list[i].equals(contacts_list[j]))
-			{
-				// Destroy the duplicate contact 
-				contacts_list[j].~Contact();
-				// Shift the contacts to fill the gap
-				for (size_t k = j; k < contacts_count - 1; k++)
-				{
-					contacts_list[k] = contacts_list[k + 1];
-				}
-				// Decrement the count
-				contacts_count--;
-			}
-		}
-	}
+void ContactsBook::merge_duplicates() {
+    // Iterate through the contacts list to look for duplicates
+    for (size_t i = 0; i < contacts_count; i++) {
+        for (size_t j = i + 1; j < contacts_count; j++) {
+            // If found a duplicate
+            if (contacts_list[i].equals(contacts_list[j])) {
+                // Shift the subsequent contacts to fill the gap
+                for (size_t k = j; k < contacts_count - 1; ++k) {
+                    contacts_list[k] = contacts_list[k + 1];
+                }
+                // Decrement the count to remove the duplicate
+                --contacts_count;
+				--j;
+            }
+        }
+    }
 }
 
 

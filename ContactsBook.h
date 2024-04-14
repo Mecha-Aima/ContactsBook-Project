@@ -1,6 +1,8 @@
 #pragma once
 #include "Address.h"
 #include "Contact.h"
+#include <algorithm>
+#include <iomanip>
 
 #ifndef BASIC_LIB
 #define BASIC_LIB
@@ -36,6 +38,7 @@ public:
 	*/
 	void load_from_file(std::string file_name);
 	void save_to_file(std::string file_name);
+	Contact *copy_list(Contact *contacts_list);
 
 private:
 	bool full() const;

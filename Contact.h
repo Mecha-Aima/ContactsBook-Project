@@ -19,8 +19,9 @@ private:
 public:
 	bool equals(Contact contact);
 	Contact* copy_contact();
+	void print_contact();
 
-	Contact() {}
+	Contact();
 	Contact(std::string first_name, std::string last_name, std::string mobile_number, std::string email_address, Address *address);
 	// Setters
 	void set_first_name(std::string first_name);

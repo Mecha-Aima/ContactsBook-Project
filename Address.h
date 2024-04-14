@@ -15,7 +15,7 @@ public:
 	Address copy_address();
 
 	Address(std::string house, std::string street, std::string city, std::string country);
-	Address() {}
+	Address();
 
 	// Getters
 	std::string get_house() const;
