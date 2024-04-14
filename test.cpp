@@ -18,8 +18,13 @@ int main()
     book.add_contact(c2);
     book.add_contact(c3);
     book.add_contact(c4);
+    // Add some more contacts after reading from file
+    book.load_from_file("contacts.txt");
     // Print total contacts
     std::cout << "Total contacts: " << book.total_contacts() << std::endl;
+    // Print all contacts
+    std::cout << "\nAll contacts: " << std::endl;
+    book.print_contacts();
     // Search for a contact by name
     std::cout << "\nSearch for a contact by name" << std::endl;
     Contact *found = book.search_contact("Ali", "Ahmed");
@@ -68,6 +73,9 @@ int main()
     // Print contacts sorted by last name
     std::cout << "\nContacts sorted by last name" << std::endl;
     book.print_contacts_sorted("last_name");
+    // Save contact book to a file
+    std::cout << "\nSaving contacts to a file..." << std::endl;
+    book.save_to_file("contacts2.txt");
 
     delete ad1;
     delete ad2;

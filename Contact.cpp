@@ -42,8 +42,10 @@ void Contact::set_email_address(std::string email_address)
 }
 void Contact::set_address(Address *address)
 {
-	if (address != nullptr)
+	if (address != nullptr){
 		this->address = address;
+	}
+		
 }
 
 // Getters

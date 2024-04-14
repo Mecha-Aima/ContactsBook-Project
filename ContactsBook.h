@@ -30,12 +30,10 @@ public:
 	~ContactsBook();
 
 	void print_contacts_sorted(std::string choice); // Only two choices first_name or last_name
-	void merge_duplicates(); // Implement this function that finds and merges all the duplicates
-							 // Duplicate means exact equal, this means if
+	void merge_duplicates(); // Merge duplicates
+	void print_contacts() const;	// Print all contacts in the order they were added
 	
-	/* 
-	*  This function loads contacts from the given file (see details in ContactsBook.cpp)
-	*/
+
 	void load_from_file(std::string file_name);
 	void save_to_file(std::string file_name);
 	Contact *copy_list(Contact *contacts_list);

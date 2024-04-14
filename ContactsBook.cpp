@@ -1,5 +1,5 @@
 #include "ContactsBook.h"
-
+#include <fstream>
 
 // Constructor
 ContactsBook::ContactsBook(int size_of_list)
@@ -163,6 +163,17 @@ void ContactsBook::sort_contacts_list(Contact *contacts_list, std::string choice
 	
 }
 
+void ContactsBook::print_contacts() const {
+	// Print the contacts in the order they were added
+	for (size_t i = 0; i < contacts_count; i++) {
+		std::cout << std::left << std::setw(10) << contacts_list[i].get_first_name() << std::setw(10) << contacts_list[i].get_last_name() << std::setw(14) << contacts_list[i].get_mobile_number() << contacts_list[i].get_email_address() << std::endl;
+		// Call the address print function to print address on next line
+		contacts_list[i].get_address()->print_address();
+		std::cout << std::endl;
+	}
+
+}
+
 void ContactsBook::merge_duplicates() {
     // Iterate through the contacts list to look for duplicates
     for (size_t i = 0; i < contacts_count; i++) {
@@ -184,27 +195,63 @@ void ContactsBook::merge_duplicates() {
 
 void ContactsBook::load_from_file(std::string file_name) 
 {
-	/*
-	*	Read contacts back from file in the same format	
-	*	Read the contacts_count, and run a loop for this contacts_count and read the 
-	*	contacts in the same format as you stored
-	*	Add them to contact book (this.add_contact function can be used)
-	*	Finally, close the file
-	*/
+	std::ifstream file(file_name);
+	if (!file.is_open())
+	{
+		std::cout << "Error opening file" << std::endl;
+		return;
+	}
+	int count;
+	file >> count;
+	file.ignore();
+	for (size_t i = 0; i < count; i++)
+	{
+		std::string first_name, last_name, mobile_number, email_address;
+        // Read the contact attributes
+        std::getline(file, first_name, ',');
+        std::getline(file, last_name, ',');
+        std::getline(file, mobile_number, ',');
+        std::getline(file, email_address);
+        // Read the address attributes
+        std::string house, street, city, country;
+        std::getline(file, house, ',');
+        std::getline(file, street, ',');
+        std::getline(file, city, ',');
+        std::getline(file, country);
+		// Skip any blank lines
+        while (file.peek() == '\n') {
+            file.ignore();
+            if (file.eof()) break;  // Break the loop if the end of the file has been reached
+        }
+		// Create a new address object
+		Address* address = new Address(house, street, city, country);
+		// Create a new contact object
+		Contact contact(first_name, last_name, mobile_number, email_address, address);
+		// Add the contact to the contact book
+		add_contact(contact);
+	}
+	file.close();
 }
 
 
 void ContactsBook::save_to_file(std::string file_name) 
 {
-	/*
-	*	In this function you will store all the contacts to a file
-	*	On first line store contacts_count
-	*	On next lines store contacts in the following format:
-	*       2 lines for each contact
-	*       On oneline write contact attributes(except address) in comma separated format. On second line
-	*	store address atributes in the same format
-	*	first_name,last_name,mobile_number,email_address
-	*	house,street,city,country
-	*	Close the file
-	*/
+	std::ofstream file(file_name);
+	if (!file.is_open())
+	{
+		std::cout << "Error opening file" << std::endl;
+		return;
+	}
+	// Write the contacts count to the file
+	file << contacts_count << std::endl;
+	for(size_t i = 0; i < contacts_count; i++)
+	{
+		// Write the contact attributes to the file
+		file << contacts_list[i].get_first_name() << ", " << contacts_list[i].get_last_name() << ", " << contacts_list[i].get_mobile_number() << ", " << contacts_list[i].get_email_address() << std::endl;
+		// Write the address attributes to the file
+		file << contacts_list[i].get_address()->get_house() << ", " << contacts_list[i].get_address()->get_street() << ", " << contacts_list[i].get_address()->get_city() << ", " << contacts_list[i].get_address()->get_country() << std::endl;
+		file << std::endl;
+	}
+	file.close();
+	
 }
