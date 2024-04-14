@@ -14,6 +14,7 @@ void search_contacts(ContactsBook& contacts_book);
 void display_contact_count(ContactsBook& contacts_book);
 int main()
 {
+    // Initialize with any number of contacts
     ContactsBook contacts_book(4);
     int choice;
     do
