@@ -124,19 +124,19 @@ void search_contacts(ContactsBook& contacts_book)
     switch (choice)
     {
     case 1:
-        if (contacts_book.search_contact(keyword, "") == nullptr) {
+        if (contacts_book.search_contact(keyword, " ") == nullptr) {
             cout << "Contact not found" << endl;
         }
         else {
-            contacts_book.search_contact(keyword, "")->print_contact();
+            contacts_book.search_contact(keyword, " ")->print_contact();
         }
         break;
     case 2:
-        if (contacts_book.search_contact("", keyword) == nullptr) {
+        if (contacts_book.search_contact(" ", keyword) == nullptr) {
             cout << "Contact not found" << endl;
         }
         else {
-            contacts_book.search_contact("", keyword)->print_contact();
+            contacts_book.search_contact(" ", keyword)->print_contact();
         }
         break;
     case 3:

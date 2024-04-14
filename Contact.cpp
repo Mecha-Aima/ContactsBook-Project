@@ -67,7 +67,7 @@ bool Contact::equals(Contact contact)
 
 void Contact::print_contact()
 {
-	std::cout << "Name: " << first_name << " " << last_name << std::endl;
+	std::cout << "\nName: " << first_name << " " << last_name << std::endl;
 	std::cout << "Mobile Number: " << mobile_number << std::endl;
 	std::cout << "Email Address: " << email_address << std::endl;
 	std::cout << "Address: " << address->get_house() << ", " << address->get_street() << ", " << address->get_city() << ", " << address->get_country() << std::endl;

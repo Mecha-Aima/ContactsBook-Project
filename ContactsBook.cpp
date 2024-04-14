@@ -65,7 +65,7 @@ Contact* ContactsBook::search_contact(std::string first_name, std::string last_n
 	for (size_t i = 0; i < contacts_count; i++)
 	{
 		// If found return a copy of the contact using copy func
-		if (contacts_list[i].get_first_name() == first_name && contacts_list[i].get_last_name() == last_name)
+		if (contacts_list[i].get_first_name() == first_name || contacts_list[i].get_last_name() == last_name)
 		{
 			return contacts_list[i].copy_contact();
 		}
