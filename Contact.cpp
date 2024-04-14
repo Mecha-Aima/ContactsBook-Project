@@ -87,3 +87,21 @@ Contact* Contact::copy_contact()
 		this->address->get_country());
 	return copiedContact;
 }
+
+// Overload cin for Contact
+std::istream& operator>>(std::istream& in, Contact& contact)
+{
+	std::string first_name, last_name, mobile_number, emial_address;
+	Address add;
+	std::cout << "\nEnter first name: ";
+	in >> first_name;
+	std::cout << "Enter last name: ";
+	in >> last_name;
+	std::cout << "Enter mobile number: ";
+	in >> mobile_number;
+	std::cout << "Enter email address: ";
+	in >> emial_address;
+	std::cout << "Enter address: " << std::endl;
+	// Will use overloaded cin for Address
+	in >> add;
+}

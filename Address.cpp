@@ -62,3 +62,17 @@ Address Address::copy_address()
 {
 	return Address(house, street, city, country);
 }
+
+// Overload cin for Address
+std::istream& operator>>(std::istream& in, Address& address)
+{
+	std::cout << "Enter house: ";
+	in >> address.house;
+	std::cout << "Enter street: ";
+	in >> address.street;
+	std::cout << "Enter city: ";
+	in >> address.city;
+	std::cout << "Enter country: ";
+	in >> address.country;
+	return in;
+}

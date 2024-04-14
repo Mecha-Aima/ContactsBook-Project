@@ -27,4 +27,6 @@ public:
 	void set_street(std::string street);
 	void set_city(std::string city);
 	void set_country(std::string country);
+	// Overload cin for Address
+	friend std::istream& operator>>(std::istream& in, Address& address);
 };

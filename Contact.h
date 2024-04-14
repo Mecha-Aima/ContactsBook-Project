@@ -35,4 +35,6 @@ public:
 	std::string get_mobile_number() const;
 	std::string get_email_address() const;
 	Address* get_address() const;
+	// Overload cin for Contact
+	friend std::istream& operator>>(std::istream& in, Contact& contact);
 };
