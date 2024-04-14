@@ -19,12 +19,6 @@ Contact::Contact(std::string first_name, std::string last_name, std::string mobi
 	set_address(address);
 }
 
-// Destructor
-Contact::~Contact()
-{
-	delete address;
-}
-
 // Setters
 void Contact::set_first_name(std::string first_name)
 {
@@ -48,8 +42,10 @@ void Contact::set_email_address(std::string email_address)
 }
 void Contact::set_address(Address *address)
 {
-	if (address != nullptr)
+	if (address != nullptr){
 		this->address = address;
+	}
+		
 }
 
 // Getters
@@ -67,6 +63,14 @@ bool Contact::equals(Contact contact)
 		return true;
 	}
 	return false;
+}
+
+void Contact::print_contact()
+{
+	std::cout << "Name: " << first_name << " " << last_name << std::endl;
+	std::cout << "Mobile Number: " << mobile_number << std::endl;
+	std::cout << "Email Address: " << email_address << std::endl;
+	std::cout << "Address: " << address->get_house() << ", " << address->get_street() << ", " << address->get_city() << ", " << address->get_country() << std::endl;
 }
 
 // Return a deep copy of *this

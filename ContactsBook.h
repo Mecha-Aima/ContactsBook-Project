@@ -1,6 +1,8 @@
 #pragma once
 #include "Address.h"
 #include "Contact.h"
+#include <algorithm>
+#include <iomanip>
 
 #ifndef BASIC_LIB
 #define BASIC_LIB
@@ -18,26 +20,26 @@ private:
 
 public:
 	void add_contact(const Contact& contact);
-	int total_contacts();
+	int total_contacts() const;
 
 	Contact* search_contact(std::string first_name, std::string last_name);
 	Contact* search_contact(std::string phone);
 	Contact* search_contact(const Address& address);
 
 	ContactsBook(int size_of_list);
+	~ContactsBook();
 
 	void print_contacts_sorted(std::string choice); // Only two choices first_name or last_name
-	void merge_duplicates(); // Implement this function that finds and merges all the duplicates
-							 // Duplicate means exact equal, this means if
+	void merge_duplicates(); // Merge duplicates
+	void print_contacts() const;	// Print all contacts in the order they were added
 	
-	/* 
-	*  This function loads contacts from the given file (see details in ContactsBook.cpp)
-	*/
+
 	void load_from_file(std::string file_name);
 	void save_to_file(std::string file_name);
+	Contact *copy_list(Contact *contacts_list);
 
 private:
-	bool full();
+	bool full() const;
 	void resize_list();
 	void sort_contacts_list(Contact *contacts_list, std::string choice);
 };
