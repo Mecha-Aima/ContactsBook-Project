@@ -19,7 +19,7 @@ int main()
     do
     {
         print_menu();
-        cout << "Enter your choice: ";
+        cout << "\nEnter your choice: ";
         cin >> choice;
         if (choice == 1) {
             contacts_book = create_list();
@@ -59,7 +59,7 @@ int main()
 }
 void print_menu()
 {
-    cout << "1. Create a contacts list" << endl;
+    cout << "\n1. Create a contacts list" << endl;
     cout << "2. Add New Contact" << endl;
     cout << "3. Merge Duplicates" << endl;
     cout << "4. Store To File" << endl;
@@ -72,7 +72,7 @@ void print_menu()
 }
 ContactsBook create_list()
 {
-    cout << "Enter the number of contacts: ";
+    cout << "\nEnter the number of contacts: ";
     int list_size;
     cin >> list_size;
     ContactsBook contacts_book(list_size);
@@ -90,21 +90,21 @@ void merge_duplicates(ContactsBook& contacts_book)
 }
 void store_to_file(ContactsBook& contacts_book) {
     string file_name;
-    cout << "Enter file name: ";
+    cout << "\nEnter file name: ";
     cin >> file_name;
     contacts_book.save_to_file(file_name);
 }
 void load_from_file(ContactsBook& contacts_book)
 {
     string file_name;
-    cout << "Enter file name: ";
+    cout << "\nEnter file name: ";
     cin >> file_name;
     contacts_book.load_from_file(file_name);
 }
 void print_contacts_sorted(ContactsBook& contacts_book)
 {
     string choice;
-    cout << "Enter sort criteria (first_name or last_name): ";
+    cout << "\nEnter sort criteria (first_name or last_name): ";
     cin >> choice;
     contacts_book.print_contacts_sorted(choice);
 }
@@ -115,7 +115,7 @@ void print_contacts(ContactsBook& contacts_book)
 void search_contacts(ContactsBook& contacts_book)
 {
     int choice;
-    cout << "Search by:\n1. First Name\n2. Last Name\n3. Mobile Number\nEnter your choice: ";
+    cout << "\nSearch by:\n1. First Name\n2. Last Name\n3. Mobile Number\nEnter your choice: ";
     cin >> choice;
     string keyword;
     cout << "Enter search keyword: ";
@@ -154,5 +154,5 @@ void search_contacts(ContactsBook& contacts_book)
 }
 void display_contact_count(ContactsBook& contacts_book)
 {
-    cout << "Total number of contacts: " << contacts_book.total_contacts() << endl;
+    cout << "\nTotal number of contacts: " << contacts_book.total_contacts() << endl;
 }
