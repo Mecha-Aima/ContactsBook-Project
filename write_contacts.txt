@@ -1,19 +1,19 @@
 6
-Ali, Ahmed, 03331234567, ali.ahmed@gmail.com
-House 1, Street 1, City 1, Country 1
+Ali,Ahmed,03331234567,ali.ahmed@gmail.com
+House 1,Street 1,City 1,Country 1
 
-Aimen, Malik, 03331234568, aimen.malik@gmail.com
-House 2, Street 2, City 2, Country 2
+Aimen,Malik,03331234568,aimen.malik@gmail.com
+House 2,Street 2,City 2,Country 2
 
-Amal, Malik, 94054356561, amal@yahoo.com
-House 3, Street 3, City 3, Country 3
+Amal,Malik,94054356561,amal@yahoo.com
+House 3,Street 3,City 3,Country 3
 
-Qainat, Aslam, 03331234567, q.aslam@gmail.com
-House 4, Street 4, City 4, Country 4
+Qainat,Aslam,03331234567,q.aslam@gmail.com
+House 4,Street 4,City 4,Country 4
 
-Zubair, Khan, 03331233468, z.khan@gmail.com
-House 5, Street 5, City 5, Country 5
+Zubair,Khan,03331233468,z.khan@gmail.com
+House 5,Street 5,City 5,Country 5
 
-Bilal, Arshad, 94054356891, b.arshad@yahoo.com
-House 6, Street 6, City 6, Country 6
+Bilal,Arshad,94054356891,b.arshad@yahoo.com
+House 6,Street 6,City 6,Country 6
 

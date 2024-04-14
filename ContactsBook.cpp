@@ -195,6 +195,8 @@ void ContactsBook::merge_duplicates() {
 
 void ContactsBook::load_from_file(std::string file_name) 
 {
+	// Follows strict format: first_name,last_name,mobile_number,email_address
+	// 						  house,street,city,country
 	std::ifstream file(file_name);
 	if (!file.is_open())
 	{
@@ -247,9 +249,9 @@ void ContactsBook::save_to_file(std::string file_name)
 	for(size_t i = 0; i < contacts_count; i++)
 	{
 		// Write the contact attributes to the file
-		file << contacts_list[i].get_first_name() << ", " << contacts_list[i].get_last_name() << ", " << contacts_list[i].get_mobile_number() << ", " << contacts_list[i].get_email_address() << std::endl;
+		file << contacts_list[i].get_first_name() << "," << contacts_list[i].get_last_name() << "," << contacts_list[i].get_mobile_number() << "," << contacts_list[i].get_email_address() << std::endl;
 		// Write the address attributes to the file
-		file << contacts_list[i].get_address()->get_house() << ", " << contacts_list[i].get_address()->get_street() << ", " << contacts_list[i].get_address()->get_city() << ", " << contacts_list[i].get_address()->get_country() << std::endl;
+		file << contacts_list[i].get_address()->get_house() << "," << contacts_list[i].get_address()->get_street() << "," << contacts_list[i].get_address()->get_city() << "," << contacts_list[i].get_address()->get_country() << std::endl;
 		file << std::endl;
 	}
 	file.close();

@@ -91,17 +91,19 @@ Contact* Contact::copy_contact()
 // Overload cin for Contact
 std::istream& operator>>(std::istream& in, Contact& contact)
 {
-	std::string first_name, last_name, mobile_number, emial_address;
-	Address add;
 	std::cout << "\nEnter first name: ";
-	in >> first_name;
+	in >> contact.first_name;
 	std::cout << "Enter last name: ";
-	in >> last_name;
+	in >> contact.last_name;
 	std::cout << "Enter mobile number: ";
-	in >> mobile_number;
+	in >> contact.mobile_number;
 	std::cout << "Enter email address: ";
-	in >> emial_address;
-	std::cout << "Enter address: " << std::endl;
+	in >> contact.email_address;
+	std::cout << "\nEnter address: " << std::endl;
+	if (contact.address == nullptr) {
+        contact.address = new Address();
+    }
 	// Will use overloaded cin for Address
-	in >> add;
+	in >> *(contact.address);
+	return in;
 }
