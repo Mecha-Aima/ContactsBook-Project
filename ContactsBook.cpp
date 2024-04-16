@@ -17,6 +17,21 @@ ContactsBook::~ContactsBook()
 	delete[] contacts_list;
 }
 
+// Copy Constructor
+ContactsBook::ContactsBook(const ContactsBook& other)
+{
+	// Copy the size and count members
+	size_of_contacts = other.size_of_contacts;
+	contacts_count = other.contacts_count;
+	// Allocate a new array of the same size
+	contacts_list = new Contact[size_of_contacts];
+	// Copy the contacts from the other object to this object
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		contacts_list[i] = *(other.contacts_list[i].copy_contact());
+	}
+}
+
 void ContactsBook::add_contact(const Contact& contact)
 {
 	// Check if the list is full, if it is full call the resize function
@@ -255,5 +270,27 @@ void ContactsBook::save_to_file(std::string file_name)
 		file << std::endl;
 	}
 	file.close();
-	
+}
+
+// Overload assignment operator
+ContactsBook& ContactsBook::operator=(const ContactsBook& other)
+{
+	// Check for self assignment
+	if (this == &other)
+	{
+		return *this;
+	}
+	// Copy the size and count members
+	size_of_contacts = other.size_of_contacts;
+	contacts_count = other.contacts_count;
+	// Delete the old array
+	delete[] contacts_list;
+	// Allocate a new array of the same size
+	contacts_list = new Contact[size_of_contacts];
+	// Copy the contacts from the other object to this object
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		contacts_list[i] = *(other.contacts_list[i].copy_contact());
+	}
+	return *this;
 }

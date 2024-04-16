@@ -28,6 +28,7 @@ public:
 
 	ContactsBook(int size_of_list);
 	~ContactsBook();
+	ContactsBook(const ContactsBook& other);
 
 	void print_contacts_sorted(std::string choice); // Only two choices first_name or last_name
 	void merge_duplicates(); // Merge duplicates
@@ -37,9 +38,12 @@ public:
 	void load_from_file(std::string file_name);
 	void save_to_file(std::string file_name);
 	Contact *copy_list(Contact *contacts_list);
+	// Overload assignment operator
+	ContactsBook& operator=(const ContactsBook& other);
 
 private:
 	bool full() const;
 	void resize_list();
 	void sort_contacts_list(Contact *contacts_list, std::string choice);
+	
 };
