@@ -1,6 +1,5 @@
 #ifndef BASIC_LIB
 #include "Contact.h"
-#include <algorithm>
 #include <iomanip>
 #define BASIC_LIB
 #include <iostream>
