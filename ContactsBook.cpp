@@ -2,7 +2,6 @@
 #include <fstream>
 
 // Constructor
-// hckrhckrc
 ContactsBook::ContactsBook(int size_of_list)
 {
 	// Initialize the contacts_list array, also initialize the size and count members accordingly
