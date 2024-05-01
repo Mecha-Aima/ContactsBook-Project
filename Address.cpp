@@ -87,3 +87,10 @@ std::istream& operator>>(std::istream& in, Address& address)
 	address.set_country(newCountry);
 	return in;
 }
+
+// Overload cout for Address
+std::ostream& operator<<(std::ostream& out, const Address& address)
+{
+	out << address.house << ", " << address.street << ", " << address.city << ", " << address.country;
+	return out;
+}

@@ -107,3 +107,20 @@ std::istream& operator>>(std::istream& in, Contact& contact)
 	in >> *(contact.address);
 	return in;
 }
+
+// Overload cout for Contact
+std::ostream& operator<<(std::ostream &out, const Contact &contact)
+{
+	out << contact.first_name << " " << contact.last_name << " " << contact.mobile_number << " " << contact.email_address << "\n" << *contact.address;
+	return out;
+}
+
+// Overload comparison operator for Contact
+bool Contact::operator==(const Contact& other)
+{
+	if (this->first_name == other.first_name && this->last_name == other.last_name && this->mobile_number == other.mobile_number && this->email_address == other.email_address && this->address->equals(*other.address))
+	{
+		return true;
+	}
+	return false;
+}

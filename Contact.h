@@ -37,4 +37,8 @@ public:
 	Address* get_address() const;
 	// Overload cin for Contact
 	friend std::istream& operator>>(std::istream& in, Contact& contact);
+	// Overload cout for Contact
+	friend std::ostream& operator<<(std::ostream& out, const Contact& contact);
+	// Overload comparison operator for Contact
+	bool operator==(const Contact& other);
 };

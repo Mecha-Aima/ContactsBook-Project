@@ -29,4 +29,6 @@ public:
 	void set_country(std::string country);
 	// Overload cin for Address
 	friend std::istream& operator>>(std::istream& in, Address& address);
+	// Overload cout for Address
+	friend std::ostream& operator<<(std::ostream& out, const Address& address);
 };
