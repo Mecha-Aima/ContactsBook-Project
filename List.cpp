@@ -77,8 +77,8 @@ void List<T>::remove(T item) {
     
     for (int i=index; i < length-1; i++)
     {
-        list[i] = list[i+1];
-    }
+        list[i] = list[i+1];    // Shift elements to the left
+    }   
     length--;
 }
 
