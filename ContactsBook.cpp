@@ -32,7 +32,7 @@ ContactsBook::ContactsBook(const ContactsBook& other)
 	}
 }
 
-void ContactsBook::add_contact(const Contact& contact)
+void ContactsBook::add_contact(Contact& contact)
 {
 	// Check if the list is full, if it is full call the resize function
 	if (full())
@@ -42,7 +42,29 @@ void ContactsBook::add_contact(const Contact& contact)
 	// If list is not full add the contact to the end of the array
 	contacts_list[contacts_count] = contact;
 	// Increment the count
+	contact.set_contact_id(contacts_count);
 	contacts_count++;
+}
+
+// Delete a contact from the list
+void ContactsBook::delete_contact(std::string first_name, std::string last_name)
+{
+	// Search the contact in the list according to the given first name and last name
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		// If found delete the contact
+		if (contacts_list[i].get_first_name() == first_name || contacts_list[i].get_last_name() == last_name)
+		{
+			// Shift the subsequent contacts to fill the gap
+			for (size_t j = i; j < contacts_count - 1; j++)
+			{
+				contacts_list[j] = contacts_list[j + 1];
+			}
+			// Decrement the count to remove the contact
+			contacts_count--;
+			break;
+		}
+	}
 }
 
 int ContactsBook::total_contacts() const

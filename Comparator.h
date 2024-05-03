@@ -5,6 +5,7 @@ class Comparator
 {
 public:
     virtual bool compare(const T& b, bool (*fptr)(const T& a, const T& b)) const = 0;
+    virtual ~Comparator() = default;
 };
 
 // Use cases:

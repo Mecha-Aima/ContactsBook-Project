@@ -17,6 +17,13 @@ Contact::Contact(std::string first_name, std::string last_name, std::string mobi
 	set_mobile_number(mobile_number);
 	set_email_address(email_address);
 	set_address(address);
+	search_count = 0;
+}
+
+// Destructor
+Contact::~Contact()
+{
+	delete address;
 }
 
 // Setters
@@ -48,12 +55,21 @@ void Contact::set_address(Address *address)
 		
 }
 
+void Contact::set_contact_id(int id)
+{
+	this->contact_id = id;
+}
+
 // Getters
 std::string Contact::get_first_name() const { return first_name; }
 std::string Contact::get_last_name() const { return last_name; }
 std::string Contact::get_mobile_number() const { return mobile_number; }
 std::string Contact::get_email_address() const { return email_address; }
 Address* Contact::get_address() const { return address; }
+int Contact::get_contact_id() const { return contact_id; }
+int Contact::get_search_count() const { return search_count; }
+List<std::string> Contact::get_groups() const { return groups; }
+Contact& Contact::get_contact(int id) { return *this; }
 
 // equals() method to test if passed contact is equal to *this
 bool Contact::equals(Contact contact)
@@ -64,6 +80,8 @@ bool Contact::equals(Contact contact)
 	}
 	return false;
 }
+
+
 
 void Contact::print_contact()
 {
@@ -123,4 +141,55 @@ bool Contact::operator==(const Contact& other)
 		return true;
 	}
 	return false;
+}
+
+// Add a group to the list of groups
+void Contact::add_to_group(std::string group)
+{
+	groups.append(group);
+}
+
+// Remove a group from the list of groups
+void Contact::remove_from_group(std::string group)
+{
+	groups.remove(group);
+}
+
+// Increment the search count
+void Contact::add_search_count()
+{
+	search_count++;
+}
+
+// Method to compare two contacts
+bool Contact::compare(const Contact& other, bool (*fptr)(const Contact& a, const Contact& b)) const
+{
+	return fptr(*this, other);
+}
+
+// Comparison functions
+bool Contact::less_than(int choice, const Contact& a, const Contact& b)
+{
+	switch (choice)
+	{
+	case 1:
+		return a.first_name < b.first_name;
+	case 2:
+		return a.last_name < b.last_name;
+	default:
+		return false;
+	}
+}
+
+bool Contact::greater_than(int choice, const Contact& a, const Contact& b)
+{
+	switch (choice)
+	{
+	case 1:
+		return a.first_name > b.first_name;
+	case 2:
+		return a.last_name > b.last_name;
+	default:
+		return false;
+	}
 }
