@@ -1,5 +1,5 @@
-#ifndef SEARCHMANAGER_H
-#define SEARCHMANAGER_H
+#ifndef SEARCHHISTORY_H
+#define SEARCHHISTORY_H
 #include <string>
 #include "Contact.h"
 #include "HistoryObject.h"
