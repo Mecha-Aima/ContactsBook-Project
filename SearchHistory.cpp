@@ -9,7 +9,7 @@ bool SearchHistory::check_frequent_search() {
     // Assuming history is an array of HistoryObject instances
     for (int i = 0; i < historySize; i++) {
         // Use the overloaded == operator from HistoryObject class to check if the current history item matches the frequent search
-        if (frequentSearch[i].operator==(history[i])) { // Using the overloaded operator
+        if (frequentSearch[i] == history[i]) { // Using the overloaded operator
             currentSearchCount++; // Increment the count if the current search matches the frequent search
         }
     }
