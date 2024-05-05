@@ -123,3 +123,20 @@ List<T>& List<T>::display() const {
     return *this;
 }
 
+// operator == overloading
+template <typename T>
+bool List<T>::operator==(const List& other) const {
+    // Check if current list is equal to the other list
+    if (this == &other)
+        return true;
+    if(length == other.length)
+    {
+        for (int i=0; i < length; i++)
+        {
+            if (list[i] != other.list[i])
+                return false;
+        }
+        return true;
+    }
+    return false;
+}

@@ -18,14 +18,15 @@ public:
     Group(const Group& other);
     Group& operator=(const Group& other);
     ~Group();
-	void add_contact(int contactId);
-	void remove_contact(int contactID);
+	void add_contact(int contactId, ContactsBook& contactsBook);
+	void remove_contact(int contactID, ContactsBook& contactsBook);
+    void resize(int new_size);
     // Method to get the name of the group
-	std::string get_name();
+	std::string get_name() const;
     // Method to get the number of contacts in the group
-	int get_group_size();
+	int get_group_size() const;
     // Method to get the list of contact IDs in the group
-	List<int> get_members();
+	List<int> get_members() const;
     // Method to compare two groups
     bool compare(const Group& other, bool (*fptr)(const Group& a, const Group& b)) const override;
     // Method to check if two groups are equal

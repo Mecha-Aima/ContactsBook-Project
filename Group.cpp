@@ -1,4 +1,5 @@
 #include "Group.h"
+#include "ContactsBook.h"
 
 // Constructor
 Group::Group(std::string n, int max) : name(n), max_contacts(max), no_of_contacts(0) {}
@@ -21,20 +22,77 @@ Group& Group::operator=(const Group& other) {
 Group::~Group() {}
 
 // Method to add a contact to the group
-void Group::add_contact(int contact_ID)
+void Group::add_contact(int contact_ID, ContactsBook& contactsBook)
 {
     if (no_of_contacts == max_contacts)
     {
         return; // Max limit reached
     }
     members.append(contact_ID);
-    
+    contactsBook.get_contact(contact_ID).add_to_group(name);
+    no_of_contacts++;
 }
 
 // Method to remove a contact from the group
-void Group::remove_contact(int contact_ID)
+void Group::remove_contact(int contact_ID, ContactsBook& contactsBook)
 {
     members.remove(contact_ID);
+    no_of_contacts--;
+    contactsBook.get_contact(contact_ID).remove_from_group(name);
 }
 
+void Group::resize(int new_size)
+{
+    if(new_size > no_of_contacts)
+        max_contacts = new_size;
+}
 
+// Get the name of the group
+std::string Group::get_name() const
+{
+    return name;
+}
+
+// Get the size of the group
+int Group::get_group_size() const
+{
+    return no_of_contacts;
+}
+
+// Get the list of members in the group
+List<int> Group::get_members() const
+{
+    return members;
+}
+
+// operator == overloading
+bool Group::operator==(const Group& other) const
+{
+    if(name == other.name && no_of_contacts == other.no_of_contacts && max_contacts == other.max_contacts && members == other.members)
+        return true;
+    return false;
+}
+
+// return the group
+Group& Group::display()
+{
+    return *this;
+}
+
+// Less than
+bool Group::less_than(const Group& a, const Group& b)
+{
+    return a.name < b.name;
+}
+
+// Greater than
+bool Group::greater_than(const Group& a, const Group& b)
+{
+    return a.name > b.name;
+}
+
+// Compare two groups
+bool Group::compare(const Group& other, bool (*fptr)(const Group& a, const Group& b)) const
+{
+    return fptr(*this, other);
+}

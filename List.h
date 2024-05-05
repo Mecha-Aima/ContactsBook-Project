@@ -17,6 +17,7 @@ public:
     List(const List &other);
     // Methods
     List<T>& operator=(const List& other);
+    bool operator==(const List& other) const;
     T& operator[](int index);
     void append(T item);
     void resize(int new_size);

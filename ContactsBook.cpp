@@ -316,3 +316,13 @@ ContactsBook& ContactsBook::operator=(const ContactsBook& other)
 	}
 	return *this;
 }
+
+Contact& ContactsBook::get_contact(int id)
+{
+	// Return the contact at the given index
+	if(id >= contacts_count)
+	{
+		std::cout << "Contact not found" << std::endl;
+	}
+	return contacts_list[id];
+}

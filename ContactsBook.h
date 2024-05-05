@@ -1,7 +1,5 @@
-#ifndef BASIC_LIB
 #include "Contact.h"
 #include <iomanip>
-#define BASIC_LIB
 #include <iostream>
 #include <string>
 class ContactsBook {
@@ -28,10 +26,10 @@ public:
 	Contact *copy_list(Contact *contacts_list);
 	// Overload assignment operator
 	ContactsBook& operator=(const ContactsBook& other);
+	Contact& get_contact(int id);
 private:
 	bool full() const;
 	void resize_list();
 	void sort_contacts_list(Contact *contacts_list, std::string choice);
 
 };
-#endif // !BASIC_LIB

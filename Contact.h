@@ -18,7 +18,7 @@ private:
 	std::string mobile_number;
 	std::string email_address;
 	Address *address;
-	List<std::string> groups; // 
+	List<std::string> groups; 
 	int search_count;
 
 public:
@@ -64,4 +64,7 @@ public:
 	// Comparison templates
 	static bool less_than(int choice, const Contact& a, const Contact& b);	// 1: first_name, 2: last_name
 	static bool greater_than(int choice, const Contact& a, const Contact& b);
+	
 };
+
+
