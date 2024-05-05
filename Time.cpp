@@ -12,6 +12,10 @@ void Time::set_time(int hours, int minutes, int seconds) {
     this->seconds = seconds;
 }
 
+int Time::get_hours() const { return hours; }
+int Time::get_minutes() const { return minutes; }
+int Time::get_seconds() const { return seconds;}
+
 bool Time::operator==(const Time& other) const {
     return (hours == other.hours && minutes == other.minutes && seconds == other.seconds);
 }
@@ -42,7 +46,6 @@ bool Time::greater_than(const Time& t1, const Time& t2) {
         return false;
 }
 
-bool Time::compare(const Time& other, bool (*fptr)(const Time& t1, const Time& t2)) const {
-    // Compare two time instances
-    return fptr(*this, other);
+bool Time::compare(const Time& a, const Time& b, bool (*fptr)(const Time& t1, const Time& t2)) const {
+    return fptr(a, b);
 }

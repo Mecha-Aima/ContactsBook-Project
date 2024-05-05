@@ -202,12 +202,12 @@ void ContactsBook::sort_contacts_list(Contact *contacts_list, std::string choice
 
 void ContactsBook::print_contacts() const {
 	// Print the contacts in the order they were added
-	for (size_t i = 0; i < contacts_count; i++) {
-		std::cout << std::left << std::setw(10) << contacts_list[i].get_first_name() << std::setw(10) << contacts_list[i].get_last_name() << std::setw(14) << contacts_list[i].get_mobile_number() << contacts_list[i].get_email_address() << std::endl;
-		// Call the address print function to print address on next line
-		contacts_list[i].get_address()->print_address();
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		std::cout << contacts_list[i] << std::endl;
 		std::cout << std::endl;
 	}
+	
 
 }
 
@@ -317,12 +317,15 @@ ContactsBook& ContactsBook::operator=(const ContactsBook& other)
 	return *this;
 }
 
+// Get the contacts list
+Contact* ContactsBook::get_contacts() const
+{
+	// Return the contacts_list array
+	return contacts_list;
+}
+
 Contact& ContactsBook::get_contact(int id)
 {
 	// Return the contact at the given index
-	if(id >= contacts_count)
-	{
-		std::cout << "Contact not found" << std::endl;
-	}
 	return contacts_list[id];
 }

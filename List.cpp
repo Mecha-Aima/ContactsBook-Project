@@ -124,7 +124,7 @@ List<T>& List<T>::display() const {
 }
 
 template <typename T>
-List<T>& List<T>::get_list() const {
+T* List<T>::get_list() const {
     return list;
 }
 

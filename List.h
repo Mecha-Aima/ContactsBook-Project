@@ -1,5 +1,4 @@
-#ifndef LIST_H
-#define LIST_H
+#pragma once
 #ifndef BASIC_LIB
 #define BASIC_LIB
 	#include <iostream>
@@ -28,7 +27,7 @@ public:
     bool is_full() const;
     void clear();
     List<T>& display() const;
-    List& get_list() const;
+    T* get_list() const;
     
 private:
     T *list;
@@ -37,4 +36,3 @@ private:
 };
 
 #include "List.cpp"
-#endif

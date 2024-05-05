@@ -11,6 +11,10 @@ void Date::set_date(int day, int month, int year) {
     this->year = year;
 }
 
+int Date::get_day() const { return day; }  
+int Date::get_month() const { return month; }
+int Date::get_year() const { return year; }
+
 bool Date::less_than(const Date& d1, const Date& d2) {
     // Returns true if d1 is less than d2, else false
     // Assuming the date is compared based on year, then month, then day
@@ -37,9 +41,8 @@ bool Date::greater_than(const Date& d1, const Date& d2){
         return false;
 }
 
-bool Date::compare(const Date& other, bool (*fptr)(const Date& a, const Date& b)) const {
-    // Compare two date instances
-    return fptr(*this, other);
+bool Date::compare(const Date& a, const Date& b, bool (*fptr)(const Date& a, const Date& b)) const {
+    return fptr(a, b);
 }
 
 bool Date::operator==(const Date& other) const {

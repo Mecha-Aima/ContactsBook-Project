@@ -1,3 +1,4 @@
+#pragma once
 #include "Contact.h"
 #include <iomanip>
 #include <iostream>
@@ -27,6 +28,7 @@ public:
 	// Overload assignment operator
 	ContactsBook& operator=(const ContactsBook& other);
 	Contact& get_contact(int id);
+	Contact* get_contacts() const;
 private:
 	bool full() const;
 	void resize_list();

@@ -2,12 +2,14 @@
 #define HISTORYOBJECT_H
 #include "Time.h"
 #include "Date.h"
+#include <iostream>
 class HistoryObject: public Comparator<HistoryObject> {
 private:
     Time time;
     Date date;
 public:
     // Constructors
+    HistoryObject();
     HistoryObject(int hour, int minute, int second, int day, int month, int year);
     HistoryObject(const Time& time, const Date& date);
     // Destructor
@@ -17,7 +19,7 @@ public:
     HistoryObject& display();
 
     // Methods
-    bool compare(const HistoryObject& other, bool (*fptr)(const HistoryObject& h1, const HistoryObject& h2)) const override;
+    bool compare(const HistoryObject& a, const HistoryObject& b, bool (*fptr)(const HistoryObject& h1, const HistoryObject& h2)) const override;
     Time& get_time();
     void set_time(int hour, int minute, int second);
     Date& get_date();
@@ -29,6 +31,8 @@ public:
     HistoryObject& operator=(const HistoryObject& other);
     // Equality operator
     bool operator==(const HistoryObject& other) const;
+    // This is temporary
+    friend std::ostream& operator<<(std::ostream& os, const HistoryObject& history_object);
 
 };
 #endif 

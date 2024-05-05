@@ -20,12 +20,6 @@ Contact::Contact(std::string first_name, std::string last_name, std::string mobi
 	search_count = 0;
 }
 
-// Destructor
-Contact::~Contact()
-{
-	delete address;
-}
-
 // Setters
 void Contact::set_first_name(std::string first_name)
 {
@@ -143,6 +137,20 @@ bool Contact::operator==(const Contact& other)
 	return false;
 }
 
+// Overload assignment operator for Contact
+Contact& Contact::operator=(const Contact& other)
+{
+	if (this != &other)
+	{
+		this->first_name = other.first_name;
+		this->last_name = other.last_name;
+		this->mobile_number = other.mobile_number;
+		this->email_address = other.email_address;
+		this->address = new Address(other.address->get_house(), other.address->get_street(), other.address->get_city(), other.address->get_country());
+	}
+	return *this;
+}
+
 // Add a group to the list of groups
 void Contact::add_to_group(std::string group)
 {
@@ -162,34 +170,29 @@ void Contact::add_search_count()
 }
 
 // Method to compare two contacts
-bool Contact::compare(const Contact& other, bool (*fptr)(const Contact& a, const Contact& b)) const
+bool Contact::compare(const Contact& curr, const Contact& other, bool (*fptr)(const Contact& a, const Contact& b)) const
 {
-	return fptr(*this, other);
+	return fptr(curr, other);
 }
 
 // Comparison functions
-bool Contact::less_than(int choice, const Contact& a, const Contact& b)
+bool Contact::fn_less_than(const Contact& a, const Contact& b)
 {
-	switch (choice)
-	{
-	case 1:
-		return a.first_name < b.first_name;
-	case 2:
-		return a.last_name < b.last_name;
-	default:
-		return false;
-	}
+	return a.first_name < b.first_name;
 }
 
-bool Contact::greater_than(int choice, const Contact& a, const Contact& b)
+bool Contact::fn_greater_than(const Contact& a, const Contact& b)
 {
-	switch (choice)
-	{
-	case 1:
-		return a.first_name > b.first_name;
-	case 2:
-		return a.last_name > b.last_name;
-	default:
-		return false;
-	}
+	return a.first_name > b.first_name;
 }
+
+bool Contact::ln_less_than(const Contact& a, const Contact& b)
+{
+	return a.last_name < b.last_name;
+}
+
+bool Contact::ln_greater_than(const Contact& a, const Contact& b)
+{
+	return a.last_name > b.last_name;
+}
+

@@ -1,7 +1,7 @@
 #include "Group.h"
-#include "ContactsBook.h"
 
 // Constructor
+Group::Group() : name(""), max_contacts(100), no_of_contacts(0) {}
 Group::Group(std::string n, int max) : name(n), max_contacts(max), no_of_contacts(0) {}
 // Copy constructor
 Group::Group(const Group& other) : name(other.name), max_contacts(other.max_contacts), no_of_contacts(other.no_of_contacts) {
@@ -92,7 +92,7 @@ bool Group::greater_than(const Group& a, const Group& b)
 }
 
 // Compare two groups
-bool Group::compare(const Group& other, bool (*fptr)(const Group& a, const Group& b)) const
+bool Group::compare(const Group& a, const Group& b, bool (*fptr)(const Group& a, const Group& b)) const
 {
-    return fptr(*this, other);
+    return fptr(a, b);
 }

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef BASIC_LIB
-#define BASIC_LIB
 #include "ContactsBook.h"
 #include "Comparator.h"
 #include "List.h"
@@ -14,6 +12,7 @@ private:
     List<int> members;
 	int no_of_contacts;
 public:
+    Group();
 	Group(std::string n, int max = 100); // Name and maximum contacts
     Group(const Group& other);
     Group& operator=(const Group& other);
@@ -28,7 +27,7 @@ public:
     // Method to get the list of contact IDs in the group
 	List<int> get_members() const;
     // Method to compare two groups
-    bool compare(const Group& other, bool (*fptr)(const Group& a, const Group& b)) const override;
+    bool compare(const Group& a, const Group& b, bool (*fptr)(const Group& a, const Group& b)) const override;
     // Method to check if two groups are equal
     bool operator==(const Group& other) const;
     // Method to display the group
@@ -37,5 +36,3 @@ public:
     static bool less_than(const Group& a, const Group& b); 
     static bool greater_than(const Group& a, const Group& b);
 };
-
-#endif
