@@ -28,6 +28,7 @@ public:
     bool is_full() const;
     void clear();
     List<T>& display() const;
+    List& get_list() const;
     
 private:
     T *list;

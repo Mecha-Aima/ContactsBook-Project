@@ -123,6 +123,11 @@ List<T>& List<T>::display() const {
     return *this;
 }
 
+template <typename T>
+List<T>& List<T>::get_list() const {
+    return list;
+}
+
 // operator == overloading
 template <typename T>
 bool List<T>::operator==(const List& other) const {
