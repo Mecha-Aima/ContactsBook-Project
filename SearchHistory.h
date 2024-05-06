@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Contact.h"
 #include "HistoryObject.h"
+#include "AdvancedSearch.h"
 #include "List.h"
 #include "sort.h"
 
@@ -14,8 +15,8 @@ private:
     List<HistoryObject> history; // Stores search history in reverse (oldest first)
     List<Contact> searchedContacts;
     int historySize; // Track current size of history
-    // Will only be called by member functions
-    
+    friend class AdvanceSearch;
+
 public:
     SearchHistory(); // Constructor to initialize the lists
     SearchHistory(const SearchHistory& other); // Copy constructor

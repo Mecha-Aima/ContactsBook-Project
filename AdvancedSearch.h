@@ -3,12 +3,12 @@
 #ifndef ADVANCESEARCH_H
 #define ADVANCESEARCH_H
 #include "HistoryObject.h"
+#include "SearchHistory.h"
 #include "ContactsBook.h"
 #include "Contact.h"
-#include <string.h>
-#include <cstring>
-#include <algorithm>
 #include "List.h"
+#include <string>
+
 
 class AdvanceSearch {
 private:
@@ -22,6 +22,7 @@ public:
     ~AdvanceSearch();
     // Method to perform the search
     void perform_search(std::string query,ContactsBook& book);
-    void display_results();
+    List<string> get_results();
+    void update_history(HistoryObject &h, SearchHistory &sh);
 };
 #endif // ADVANCESEARCH_H
