@@ -30,6 +30,7 @@ public:
 	Contact& get_contact(int id);
 	Contact* get_contacts() const;
 	List<int>& get_member_IDs();
+	Contact& operator[](int index);
 private:
 	bool full() const;
 	void resize_list();

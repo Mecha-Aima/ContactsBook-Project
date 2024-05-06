@@ -347,3 +347,10 @@ List<int>& ContactsBook::get_member_IDs()
 	}
 	return *member_IDs;
 }
+
+Contact& ContactsBook::operator[](int index)
+{
+	if (index < 0 || index > contacts_count)
+		throw std::out_of_range("Index out of bounds");
+	return contacts_list[index];
+}
