@@ -25,7 +25,7 @@ public:
     // Method to get the number of contacts in the group
 	int get_group_size() const;
     // Method to get the list of contact IDs in the group
-	List<int> get_members() const;
+	List<int>& get_members();
     // Method to compare two groups
     bool compare(const Group& a, const Group& b, bool (*fptr)(const Group& a, const Group& b)) const override;
     // Method to check if two groups are equal

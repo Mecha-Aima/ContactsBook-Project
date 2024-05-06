@@ -36,6 +36,7 @@ void List<T>::resize(int new_size) {
     max_size = new_size;
 }
 
+// Copy constructor
 template <typename T>
 List<T>::List(const List& other) : max_size(other.max_size) {
     list = new T[max_size];

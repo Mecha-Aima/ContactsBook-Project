@@ -7,25 +7,62 @@
 
 int main()
 {
-    Group g1("WTF", 3);
-    Group g2("BSAI Batch 23", 2);
-    Group g3("Faarig Awaam", 4);
-    Group g4("Witty Whispers", 5);
+    // Test Group class
+    Group g1("Group 1", 10);
+    Group g2("Group 2", 10);
+    Group g3("Group 3", 10);
+    Group g4("Group 4", 10);
 
-    List<Group> groups;
-    groups.append(g1);
-    groups.append(g2);
-    groups.append(g3);
-    groups.append(g4);
-    for (size_t i = 0; i < groups.size(); i++)
-    {
-        std::cout << groups[i].get_name() << std::endl;
-    }
+    // Create a contact Book
+    ContactsBook book(10);
+    Contact c1("Ali", "Ahmed", "03001234567", "ali.a@gmail.com", new Address("House 1", "Street 1", "City 1", "Country 1"));
+    Contact c2("Arslan", "Mohid", "03001234568", "arslan.m@yahoo.com", new Address("House 2", "Street 2", "City 2", "Country 2"));
+    Contact c3("Babar", "Mian", "03001234569", "bilal.a@gmail.com", new Address("House 3", "Street 3", "City 3", "Country 3"));
+    Contact c4("Shahid", "Khan", "03001234570", "shahid.k@outlook.com", new Address("House 4", "Street 4", "City 4", "Country 4"));
+    Contact c5("Zeeshan", "Rauf", "03001234567", "zeeshan.r@gmail.com", new Address("House 5", "Street 5", "City 5", "Country 5"));
     std::cout << "------------------------------------\n";
-    sort_list(groups.get_list(), groups.size(), new Group(), Group::less_than);
-    for (size_t i = 0; i < groups.size(); i++)
+    book.add_contact(c1);
+    book.add_contact(c2);
+    book.add_contact(c3);
+    book.add_contact(c4);
+    book.add_contact(c5);
+    
+    book.print_contacts();
+    std::cout << book.get_contacts()[0].get_contact_id() << std::endl;
+    std::cout << book.get_contacts()[1].get_contact_id() << std::endl;
+    std::cout << book.get_contacts()[2].get_contact_id() << std::endl;
+    std::cout << book.get_contacts()[3].get_contact_id() << std::endl;
+    std::cout << book.get_contacts()[4].get_contact_id() << std::endl;
+    std::cout << "------------------------------------\n";
+    
+    // Print contact IDs of book contacts
+    List<int> contact_ids = book.get_member_IDs();
+    for (int i = 0; i < contact_ids.size(); i++)
     {
-        std::cout << groups[i].get_name() << std::endl;
+        std::cout << contact_ids[i] << std::endl;
+    }
+
+    // Add c1 to g1, g2, g3
+    g1.add_contact(c1.get_contact_id(), book);
+    g2.add_contact(c1.get_contact_id(), book);
+    g3.add_contact(c1.get_contact_id(), book);
+    g4.add_contact(c1.get_contact_id(), book);
+
+    // Add contacts to groups
+    // g1.add_contact(c1.get_contact_id(), book);
+    // g1.add_contact(c2.get_contact_id(), book);
+    // g2.add_contact(c1.get_contact_id(), book);
+    // g2.add_contact(c3.get_contact_id(), book);
+
+    // Print groups of c1
+    std::cout << "------------------------------------\n";
+    // Get the groups of c1
+    List<std::string> groups = c1.get_groups();
+    std::cout << groups.size() << std::endl;
+    // Print each group name
+    for (int i = 0; i < groups.size(); i++)
+    {
+        std::cout << groups[i] << std::endl;
     }
 }
 
