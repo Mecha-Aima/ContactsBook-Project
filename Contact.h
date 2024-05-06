@@ -4,7 +4,7 @@
 #define BASIC_LIB
 	#include <iostream>
 	#include <string>
-#endif // !BASIC_LIB
+#endif // BASIC_LIB
 
 #include "Address.h"
 #include "List.h"
@@ -69,5 +69,3 @@ public:
 	static bool ln_less_than(const Contact& a, const Contact& b);	
 	static bool ln_greater_than(const Contact& a, const Contact& b);	
 };
-
-

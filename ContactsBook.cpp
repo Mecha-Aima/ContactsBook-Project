@@ -34,18 +34,16 @@ ContactsBook::ContactsBook(const ContactsBook& other)
 
 void ContactsBook::add_contact(Contact& contact)
 {
-	// Check if the list is full, if it is full call the resize function
-	if (full())
-	{
-		resize_list();
-	}
-	// If list is not full add the contact to the end of the array
-	contacts_list[contacts_count] = contact;
-	// Increment the count
+    // Check if the list is full, if it is full call the resize function
+    if (full())
+    {
+        resize_list();
+    }
+    // If list is not full add the contact to the end of the array
 	contact.set_contact_id(contacts_count);
-	contacts_count++;
+    contacts_list[contacts_count] = contact;
+    contacts_count++;
 }
-
 // Delete a contact from the list
 void ContactsBook::delete_contact(std::string first_name, std::string last_name)
 {
@@ -59,6 +57,7 @@ void ContactsBook::delete_contact(std::string first_name, std::string last_name)
 			for (size_t j = i; j < contacts_count - 1; j++)
 			{
 				contacts_list[j] = contacts_list[j + 1];
+				contacts_list[j].set_contact_id(j);
 			}
 			// Decrement the count to remove the contact
 			contacts_count--;
@@ -326,6 +325,25 @@ Contact* ContactsBook::get_contacts() const
 
 Contact& ContactsBook::get_contact(int id)
 {
-	// Return the contact at the given index
-	return contacts_list[id];
+    // Return the contact at the given index
+    for (size_t i = 0; i < contacts_count; i++)
+    {
+        if (contacts_list[i].get_contact_id() == id)
+        {
+            return contacts_list[i];
+        }
+    }
+    
+    throw std::out_of_range("Contact not found");
+}
+
+List<int>& ContactsBook::get_member_IDs()
+{
+	// Create a list of contact IDs
+	List<int> *member_IDs = new List<int>();
+	for (size_t i = 0; i < contacts_count; i++)
+	{
+		member_IDs->append(contacts_list[i].get_contact_id());
+	}
+	return *member_IDs;
 }

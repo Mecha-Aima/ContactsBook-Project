@@ -8,6 +8,8 @@ Contact::Contact()
 	mobile_number = "";
 	email_address = "";
 	address = nullptr;
+	search_count = 0;
+	set_contact_id(0);
 }
 
 Contact::Contact(std::string first_name, std::string last_name, std::string mobile_number, std::string email_address, Address *address)
@@ -18,6 +20,7 @@ Contact::Contact(std::string first_name, std::string last_name, std::string mobi
 	set_email_address(email_address);
 	set_address(address);
 	search_count = 0;
+	set_contact_id(0);
 }
 
 // Setters

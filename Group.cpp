@@ -60,7 +60,7 @@ int Group::get_group_size() const
 }
 
 // Get the list of members in the group
-List<int> Group::get_members() const
+List<int>& Group::get_members()
 {
     return members;
 }

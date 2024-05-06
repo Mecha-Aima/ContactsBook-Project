@@ -29,6 +29,7 @@ public:
 	ContactsBook& operator=(const ContactsBook& other);
 	Contact& get_contact(int id);
 	Contact* get_contacts() const;
+	List<int>& get_member_IDs();
 private:
 	bool full() const;
 	void resize_list();
