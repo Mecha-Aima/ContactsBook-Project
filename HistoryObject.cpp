@@ -3,12 +3,12 @@
 using namespace std;
 
 // Default constructor
-HistoryObject::HistoryObject() : time(), date() {}
+HistoryObject::HistoryObject() : time(), date(), contact() {}
 // Constructor with separate hour, minute, second, day, month, year parameters
-HistoryObject::HistoryObject(int hour, int minute, int second, int day, int month, int year) :
-    time(hour, minute, second), date(day, month, year) {}
+HistoryObject::HistoryObject(int hour, int minute, int second, int day, int month, int year, Contact c) :
+    time(hour, minute, second), date(day, month, year), contact(c) {}
 // Constructor with Time and Date objects
-HistoryObject::HistoryObject(const Time& time, const Date& date) : time(time), date(date) {}
+HistoryObject::HistoryObject(const Time& time, const Date& date, Contact c) : time(time), date(date), contact(c) {}
 
 HistoryObject& HistoryObject::display() {
     return *this;
@@ -29,12 +29,17 @@ Date& HistoryObject::get_date() {
 void HistoryObject::set_date(int day, int month, int year) {
     date.set_date(day, month, year);
 }
+
+Contact& HistoryObject::get_contact() {
+    return contact;
+}
 // Copy constructor
-HistoryObject::HistoryObject(const HistoryObject& other) : time(other.time), date(other.date) {}
+HistoryObject::HistoryObject(const HistoryObject& other) : time(other.time), date(other.date), contact(other.contact) {}
 // Assignment operator
 HistoryObject& HistoryObject::operator=(const HistoryObject& other) {
     time = other.time;
     date = other.date;
+    contact = other.contact;
     return *this;
 }
 

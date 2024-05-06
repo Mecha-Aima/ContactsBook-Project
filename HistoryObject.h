@@ -2,16 +2,18 @@
 #define HISTORYOBJECT_H
 #include "Time.h"
 #include "Date.h"
+#include "Contact.h"
 #include <iostream>
 class HistoryObject: public Comparator<HistoryObject> {
 private:
     Time time;
     Date date;
+    Contact contact;
 public:
     // Constructors
     HistoryObject();
-    HistoryObject(int hour, int minute, int second, int day, int month, int year);
-    HistoryObject(const Time& time, const Date& date);
+    HistoryObject(int hour, int minute, int second, int day, int month, int year, Contact c);
+    HistoryObject(const Time& time, const Date& date, Contact c);
     // Destructor
     ~HistoryObject() {}
     // Copy constructor
@@ -24,6 +26,7 @@ public:
     void set_time(int hour, int minute, int second);
     Date& get_date();
     void set_date(int day, int month, int year);
+    Contact& get_contact();
     static bool less_than(const HistoryObject& h1, const HistoryObject& h2);
     static bool greater_than(const HistoryObject& h1, const HistoryObject& h2);
 
