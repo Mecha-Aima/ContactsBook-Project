@@ -29,6 +29,7 @@ public:
     Contact& get_contact();
     static bool less_than(const HistoryObject& h1, const HistoryObject& h2);
     static bool greater_than(const HistoryObject& h1, const HistoryObject& h2);
+    static bool by_search_count(const HistoryObject& a, const HistoryObject& b);
 
     // Assignment operator
     HistoryObject& operator=(const HistoryObject& other);

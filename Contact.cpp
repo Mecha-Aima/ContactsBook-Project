@@ -57,6 +57,11 @@ void Contact::set_contact_id(int id)
 	this->contact_id = id;
 }
 
+void Contact::set_search_count(int count)
+{
+	this->search_count = count;
+}
+
 // Getters
 std::string Contact::get_first_name() const { return first_name; }
 std::string Contact::get_last_name() const { return last_name; }
@@ -152,6 +157,7 @@ Contact& Contact::operator=(const Contact& other)
 		this->mobile_number = other.mobile_number;
 		this->email_address = other.email_address;
 		this->address = new Address(other.address->get_house(), other.address->get_street(), other.address->get_city(), other.address->get_country());
+		this->search_count = other.search_count;
 	}
 	return *this;
 }
@@ -200,4 +206,5 @@ bool Contact::ln_greater_than(const Contact& a, const Contact& b)
 {
 	return a.last_name > b.last_name;
 }
+
 

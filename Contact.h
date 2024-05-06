@@ -36,6 +36,7 @@ public:
 	void set_email_address(std::string email_address);
 	void set_address(Address *address);
 	void set_contact_id(int id);
+	void set_search_count(int count);
 	
 	// Getters
 	std::string get_first_name() const;
@@ -67,5 +68,6 @@ public:
 	static bool fn_less_than(const Contact& a, const Contact& b);	
 	static bool fn_greater_than(const Contact& a, const Contact& b);
 	static bool ln_less_than(const Contact& a, const Contact& b);	
-	static bool ln_greater_than(const Contact& a, const Contact& b);	
+	static bool ln_greater_than(const Contact& a, const Contact& b);
+	
 };

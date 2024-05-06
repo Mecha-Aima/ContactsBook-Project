@@ -1,40 +1,27 @@
 #include "SearchHistory.h"
 
-SearchHistory::SearchHistory()
-{
-    frequentSearch = 0;
-    history = 0;
-    searchedContacts = 0;
-    top5[5] = nullptr;
-}
+SearchHistory::SearchHistory(): frequentSearch(5), history(100), searchedContacts(100) { }
 
-bool SearchHistory::check_frequent_search()
+bool SearchHistory::check_frequent_search(Contact& contact)
 {
     // If the top5Size is less than 5, the new contact should always be added
-    if (top5Size < 5) {
+    if (frequentSearch.size() < 5) {
         return true;
     }
-    int minIndex = 0;
-    for (size_t i; i < top5Size; i++) {
-        if (top5[i].get_search_count() < top5[minIndex].get_search_count()) {
-            minIndex = i;
+    
+    for(int i=0; i < frequentSearch.size(); i++)
+    {
+        // If the contact's search count is greater than the search count of any of the top 5 frequent searches
+        if(frequentSearch[i].get_contact().get_search_count() < contact.get_search_count())
+        {
+            // Return true to indicate that the contact should be added to the top 5 frequent searches
+            return true;
         }
-    }
-    // Check if the new contact has a higher search count than the contact with the lowest search count
-    if (top5[minIndex].get_search_count() < contact.get_search_count()) {
-        // Remove the contact with the lowest search count
-        for (size_t i = minIndex; i < top5Size - 1; i++) {
-            top5[i] = top5[i + 1];
-        }
-        // Add the new contact to the top5 array
-        top5[top5Size - 1] = HistoryObject(contact);
-        top5Size++;
-        return true;
     }
     return false;
 }
 
-void SearchHistory::update_frequent_search(Contact& contact)
+void SearchHistory::update_frequent_search(HistoryObject& contact)
 {
     for (size_t i = 0; i < top5size; i++) {
         if (top5[i].get_contact() == contact.get_contact()) {
@@ -59,11 +46,16 @@ void SearchHistory::update_frequent_search(Contact& contact)
     }
 }
 
-void SearchHistory::add_search_item(Contact& contact, HistoryObject& historyObject) {
+void SearchHistory::add_search_item(HistoryObject& historyObject) {
     // Assuming history is an array of HistoryObject instances
     if (historySize < 100) {
         history[historySize] = historyObject;
-        searchedContacts[historySize++] = contact;
+        // Add the contact to the searchedContacts list
+        searchedContacts[historySize++] = historyObject.get_contact();
+        if(check_frequent_search(historyObject.get_contact()))
+        {
+            update_frequent_search(historyObject);
+        }
     }
     else {
         throw ("Cannot add more.");

@@ -65,6 +65,10 @@ bool HistoryObject::greater_than(const HistoryObject& h1, const HistoryObject& h
         return false;
 }
 
+bool HistoryObject::by_search_count(const HistoryObject& a, const HistoryObject& b) {
+    return a.contact.get_search_count() > b.contact.get_search_count();
+}
+
 bool HistoryObject::compare(const HistoryObject& a, const HistoryObject& b, bool (*fptr)(const HistoryObject& h1, const HistoryObject& h2)) const {
     return fptr(a, b);
 }
@@ -75,6 +79,7 @@ bool HistoryObject::operator==(const HistoryObject& other) const {
 
 // cout overload
 ostream& operator<<(ostream& os, const HistoryObject& history_object) {
+    os << "Contact: " << history_object.contact << endl;
     os << "Time: " << history_object.time.get_hours() << ":" << history_object.time.get_minutes() << ":" << history_object.time.get_seconds() << endl;
     os << "Date: " << history_object.date.get_day() << "/" << history_object.date.get_month() << "/" << history_object.date.get_year() << endl;
     return os;
