@@ -96,6 +96,7 @@ Contact* Contact::copy_contact()
 	copiedContact->last_name = this->last_name;
 	copiedContact->mobile_number = this->mobile_number;
 	copiedContact->email_address = this->email_address;
+	copiedContact->contact_id = this->contact_id;
 	copiedContact->address = new Address(this->address->get_house(), 
 		this->address->get_street(), 
 		this->address->get_city(), 
@@ -145,6 +146,7 @@ Contact& Contact::operator=(const Contact& other)
 {
 	if (this != &other)
 	{
+		this->contact_id = other.contact_id;
 		this->first_name = other.first_name;
 		this->last_name = other.last_name;
 		this->mobile_number = other.mobile_number;

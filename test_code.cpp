@@ -32,6 +32,7 @@ int main()
     std::cout << book.get_contacts()[1].get_contact_id() << std::endl;
     std::cout << book.get_contacts()[2].get_contact_id() << std::endl;
     std::cout << book.get_contacts()[3].get_contact_id() << std::endl;
+    std::cout << book.get_contacts()[4].get_contact_id() << std::endl;
     std::cout << "------------------------------------\n";
     
     // Print contact IDs of book contacts
@@ -41,7 +42,11 @@ int main()
         std::cout << contact_ids[i] << std::endl;
     }
 
-    
+    // Add c1 to g1, g2, g3
+    g1.add_contact(c1.get_contact_id(), book);
+    g2.add_contact(c1.get_contact_id(), book);
+    g3.add_contact(c1.get_contact_id(), book);
+    g4.add_contact(c1.get_contact_id(), book);
 
     // Add contacts to groups
     // g1.add_contact(c1.get_contact_id(), book);
@@ -49,13 +54,16 @@ int main()
     // g2.add_contact(c1.get_contact_id(), book);
     // g2.add_contact(c3.get_contact_id(), book);
 
-    // // Print groups of c1
-    // std::cout << "Groups of c1: " << std::endl;
-    // for (int i = 0; i < c1.get_groups().size(); i++)
-    // {
-    //     std::cout << c1.get_groups()[i] << std::endl;
-    // }
-    
+    // Print groups of c1
+    std::cout << "------------------------------------\n";
+    // Get the groups of c1
+    List<std::string> groups = c1.get_groups();
+    std::cout << groups.size() << std::endl;
+    // Print each group name
+    for (int i = 0; i < groups.size(); i++)
+    {
+        std::cout << groups[i] << std::endl;
+    }
 }
 
 // Testing Contact class sorting
