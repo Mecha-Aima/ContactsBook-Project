@@ -21,29 +21,9 @@ bool SearchHistory::check_frequent_search(Contact& contact)
     return false;
 }
 
-void SearchHistory::update_frequent_search(HistoryObject& contact)
+void SearchHistory::update_frequent_search(HistoryObject& h)
 {
-    for (size_t i = 0; i < top5size; i++) {
-        if (top5[i].get_contact() == contact.get_contact()) {
-            top5[i].add_search_count(); //It will increment the search count
-            return;
-        }
-    }
-    if (top5Size == 5) {
-        // Find the contact with the lowest search count
-        int minIndex = 0;
-        for (size_t i; i < top5Size; i++) {
-            if (top5[i].get_search_count() < top5[minIndex].get_search_count()) {
-                minIndex = i;
-            }
-        }
-        top5[minIndex] = HistoryObject(contact);
-    }
-    else {
-        // If the array is not full, simply add the new contact
-        top5[top5Size] = HistoryObject(contact);
-        top5Size++;
-    }
+    
 }
 
 void SearchHistory::add_search_item(HistoryObject& historyObject) {

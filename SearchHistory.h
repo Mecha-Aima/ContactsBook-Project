@@ -10,14 +10,13 @@ private:
     List<HistoryObject> frequentSearch;
     List<HistoryObject> history;
     List<Contact> searchedContacts;
-    Contact top5[5]; // Array to store top 5 contacts
     int historySize = 0; // Track current size of history
     int top5Size = 0; // Track current size of top5
 public:
     SearchHistory(); // Constructor to initialize the lists
-    bool check_frequent_search();
-    void update_frequent_search(Contact& contact);
-    void add_search_item(Contact& contact, HistoryObject& historyObject);
+    bool check_frequent_search(Contact& contact);
+    void update_frequent_search(HistoryObject& h);
+    void add_search_item(HistoryObject& historyObject);
     List<HistoryObject> get_search_history();
     List<Contact> get_searched_contacts();
     //void save_to_file(string historyFile, string top5File);
