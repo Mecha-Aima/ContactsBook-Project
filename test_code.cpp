@@ -1,6 +1,6 @@
 // Use this file to test your code
 #include "List.h"
-#include "sort_search.h"
+#include "sort.h"
 #include "HistoryObject.h"
 #include <iostream>
 #include "Group.h"
@@ -129,7 +129,7 @@ int main()
         std::cout << history[i] << std::endl;
     }
     std::cout << "------------------------------------\n";
-    sort_list(history.get_list(), history.size(), new HistoryObject(), HistoryObject::greater_than);
+    sort_list(history, new HistoryObject(), HistoryObject::greater_than);
     std::cout << "\nAfter sorting: " << std::endl;
     for (int i = 0; i < history.size(); i++)
     {

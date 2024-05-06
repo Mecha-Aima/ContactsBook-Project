@@ -1,6 +1,8 @@
+#pragma once
 #include "Comparator.h"
-#include "list.h"
+#include "List.h"
 
+// For ContactsBook
 template <typename C>
 void sort_list(C* arr, int n, Comparator<C>* comp, bool (*fptr)(const C& a, const C& b))
 {
@@ -18,6 +20,7 @@ void sort_list(C* arr, int n, Comparator<C>* comp, bool (*fptr)(const C& a, cons
     }
 }
 
+// For other lists: SearchHistory, frequentlySearched, etc.
 template <typename C>
 void sort_list(List<C>& arr, Comparator<C>* comp, bool (*fptr)(const C& a, const C& b))
 {
