@@ -53,8 +53,6 @@ void Contact::set_email_address(std::string email_address)
 }
 void Contact::set_address(Address *address)
 {
-	if(this->address != nullptr)
-		delete this->address;
 	if (address != nullptr){
 		this->address = new Address(address->get_house(), address->get_street(), address->get_city(), address->get_country());
 	}	
