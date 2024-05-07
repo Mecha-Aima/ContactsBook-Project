@@ -3,7 +3,7 @@
 using namespace std;
 // Constructor
 AdvanceSearch::AdvanceSearch() :
-    maxSize(200), searchResults(maxSize) {}
+    maxSize(200), searchResults(maxSize), item_count(0) {}
 
 // Destructor
 AdvanceSearch::~AdvanceSearch() { }
@@ -54,6 +54,7 @@ void AdvanceSearch::perform_search(std::string query, ContactsBook &book)
 
         if(indices.size() == query.length()){
             searchResults.append(book[i]);
+            item_count++;
         }
     }
 }
