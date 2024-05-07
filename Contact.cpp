@@ -23,6 +23,13 @@ Contact::Contact(std::string first_name, std::string last_name, std::string mobi
 	set_contact_id(0);
 }
 
+// Destructor
+Contact::~Contact()
+{
+	if (address != nullptr)
+		delete address;
+}
+
 // Setters
 void Contact::set_first_name(std::string first_name)
 {
@@ -46,10 +53,11 @@ void Contact::set_email_address(std::string email_address)
 }
 void Contact::set_address(Address *address)
 {
+	if(this->address != nullptr)
+		delete this->address;
 	if (address != nullptr){
-		this->address = address;
-	}
-		
+		this->address = new Address(address->get_house(), address->get_street(), address->get_city(), address->get_country());
+	}	
 }
 
 void Contact::set_contact_id(int id)

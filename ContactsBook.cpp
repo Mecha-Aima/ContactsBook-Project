@@ -51,16 +51,21 @@ void ContactsBook::delete_contact(std::string first_name, std::string last_name)
 	for (size_t i = 0; i < contacts_count; i++)
 	{
 		// If found delete the contact
-		if (contacts_list[i].get_first_name() == first_name || contacts_list[i].get_last_name() == last_name)
+		if (contacts_list[i].get_first_name() == first_name && contacts_list[i].get_last_name() == last_name)
 		{
 			// Shift the subsequent contacts to fill the gap
 			for (size_t j = i; j < contacts_count - 1; j++)
 			{
 				contacts_list[j] = contacts_list[j + 1];
+				// Update the contact id of the shifted contacts
 				contacts_list[j].set_contact_id(j);
 			}
 			// Decrement the count to remove the contact
 			contacts_count--;
+			// Update the contact id of the last contact
+			if (contacts_count > 0) {
+                contacts_list[contacts_count - 1].set_contact_id(contacts_count - 1);
+            }
 			break;
 		}
 	}
