@@ -56,7 +56,7 @@ int main()
     std::cout << "Added search items." << std::endl;
 
     AdvanceSearch as;
-    as.perform_search("bilal", book);
+    as.perform_search("zEeShAn.r@GmAiL.cOm", book);
 
     // Test get_results
     List<Contact> temp = as.get_results();

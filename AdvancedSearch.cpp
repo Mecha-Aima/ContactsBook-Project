@@ -20,6 +20,18 @@ string lower(string s)
 // Method to perform the search
 void AdvanceSearch::perform_search(std::string query, ContactsBook &book)
 {
+    if(query.empty())
+    {
+        searchResults.clear();
+        item_count = 0;
+        return;
+    }
+    if(item_count > 0)
+    {
+        searchResults.clear();
+        item_count = 0;
+    }
+
     string q = lower(query);
     for (size_t i = 0; i < book.total_contacts(); i++)
     {
@@ -36,23 +48,24 @@ void AdvanceSearch::perform_search(std::string query, ContactsBook &book)
 bool AdvanceSearch::is_query_in_string(const std::string& query, const std::string& str)
 {
     string lowerStr = lower(str);
-    List<int> indices(query.size());
+    size_t queryIndex = 0;
 
-    for (size_t j = 0; j < query.size(); j++)
+    for (char ch : lowerStr)
     {
-        // Find all occurrences of query[j] in lowerStr
-        size_t pos = 0;
-        while ((pos = lowerStr.find(query[j], pos)) != string::npos)
+        if (ch == query[queryIndex])
         {
-            if (indices.is_empty() || pos > indices[indices.size() - 1]) {
-                indices.append(pos);
-            }
-            pos++;
+            queryIndex++;
+        }
+
+        if (queryIndex == query.size())
+        {
+            return true;  // All characters in the query have been found in order
         }
     }
 
-    return indices.size() == query.size();
+    return false;  // Not all characters in the query were found in order
 }
+
 
 
 List<Contact> AdvanceSearch::get_results()
