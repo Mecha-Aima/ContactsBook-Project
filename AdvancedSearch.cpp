@@ -23,26 +23,35 @@ void AdvanceSearch::perform_search(std::string query, ContactsBook &book)
     string q = lower(query);
     for (size_t i = 0; i < book.total_contacts(); i++)
     {
-        List<int> indices(15);
-        string name = lower(book[i].get_first_name() + book[i].get_last_name() + book[i].get_email_address() + book[i].get_mobile_number());
-        
-        for (size_t j = 0; j < q.length(); j++)
-        {
-            // Find all occurrences of q[j] in name
-            size_t pos = 0;
-            while ((pos = name.find(q[j], pos)) != string::npos)
-            {
-                if (indices.is_empty() || pos > indices[indices.size() - 1]) {
-                    indices.append(pos);
-                }
-                pos++;
-            }
-        }
-        if(indices.size() == q.length()){
+        if (is_query_in_string(q, book[i].get_first_name()) ||
+            is_query_in_string(q, book[i].get_last_name()) ||
+            is_query_in_string(q, book[i].get_email_address()) ||
+            is_query_in_string(q, book[i].get_mobile_number())) {
             searchResults.append(book[i]);
             item_count++;
         }
     }
+}
+
+bool AdvanceSearch::is_query_in_string(const std::string& query, const std::string& str)
+{
+    string lowerStr = lower(str);
+    List<int> indices(query.size());
+
+    for (size_t j = 0; j < query.size(); j++)
+    {
+        // Find all occurrences of query[j] in lowerStr
+        size_t pos = 0;
+        while ((pos = lowerStr.find(query[j], pos)) != string::npos)
+        {
+            if (indices.is_empty() || pos > indices[indices.size() - 1]) {
+                indices.append(pos);
+            }
+            pos++;
+        }
+    }
+
+    return indices.size() == query.size();
 }
 
 

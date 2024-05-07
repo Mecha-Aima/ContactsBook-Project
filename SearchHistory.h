@@ -4,11 +4,13 @@
 #include <fstream>
 #include "Contact.h"
 #include "HistoryObject.h"
-#include "AdvancedSearch.h"
 #include "List.h"
 #include "sort.h"
 
 using namespace std;
+
+class AdvanceSearch;
+
 class SearchHistory {
 private:
     List<HistoryObject> frequentSearch;

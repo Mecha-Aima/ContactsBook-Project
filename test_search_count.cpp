@@ -1,7 +1,6 @@
 #include <iostream>
 #include "sort.h"
 #include "HistoryObject.h"
-#include "SearchHistory.h"
 #include "AdvancedSearch.h"
 #include "Contact.h"
 #include "List.h"
@@ -21,6 +20,9 @@ int main()
     book.add_contact(c3);
     book.add_contact(c4);
     book.add_contact(c5);
+    std::cout << "Added contacts." << std::endl;
+    book.print_contacts();
+    std::cout << "------------------------------------\n";
 
     // Create some history objects
     HistoryObject h1(13, 24, 30, 24, 12, 2023, c1);
@@ -52,6 +54,19 @@ int main()
     sh.add_search_item(h7);
     sh.add_search_item(h8);
     std::cout << "Added search items." << std::endl;
+
+    AdvanceSearch as;
+    as.perform_search("bilal", book);
+
+    // Test get_results
+    List<Contact> temp = as.get_results();
+    std::cout << "------------------------------------\n";
+    std::cout << "Search results: " << std::endl;
+    for (int i = 0; i < temp.size(); i++)
+    {
+        std::cout << temp[i] << std::endl;
+        std::cout << std::endl;
+    }
 
     // // Test get_search_history
     // List<HistoryObject> temp = sh.get_search_history();
@@ -86,7 +101,6 @@ int main()
     // // Test save_top5
     // sh.save_top5("top5.txt");
 
-    AdvanceSearch as;
     
 
     return 0;
