@@ -46,14 +46,9 @@ void AdvanceSearch::perform_search(std::string query, ContactsBook &book)
 }
 
 
-List<string> AdvanceSearch::get_results()
+List<Contact> AdvanceSearch::get_results()
 {
-    List<string> names;
-    for (size_t i = 0; i < searchResults.size(); i++)
-    {
-        names.append(searchResults[i].get_first_name() + " " + searchResults[i].get_last_name());
-    }
-    return names;
+    return searchResults;
 }
 
 void AdvanceSearch::update_history(HistoryObject& h, SearchHistory &sh)
