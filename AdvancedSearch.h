@@ -1,8 +1,8 @@
 #ifndef ADVANCEDSEARCH_H
 #define ADVANCEDSEARCH_H
 #include "HistoryObject.h"
-#include "SearchHistory.h"
 #include "ContactsBook.h"
+#include "SearchHistory.h"
 #include "List.h"
 #include <string>
 
@@ -20,6 +20,7 @@ public:
     void perform_search(std::string query,ContactsBook& book);
     List<Contact> get_results();
     void update_history(HistoryObject &h, SearchHistory &sh);
+    bool is_query_in_string(const std::string& query, const std::string& str);
 };
 #endif
 
