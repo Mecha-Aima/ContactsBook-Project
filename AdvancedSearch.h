@@ -18,12 +18,8 @@ public:
     ~AdvanceSearch();
     // Method to perform the search
     void perform_search(std::string query,ContactsBook& book);
-    List<string> get_results();
+    List<std::string> get_results();
     void update_history(HistoryObject &h, SearchHistory &sh);
 };
-#endif // ADVANCEDSEARCH_H
-    
-    void display_results();
-};
-#endif // ADVANCESEARCH_H
->>>>>>> 1063c0e4201d08ac3ca1c98f17b17fdb2938afe2
+#endif
+

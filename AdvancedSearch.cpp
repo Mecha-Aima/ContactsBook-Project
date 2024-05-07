@@ -14,50 +14,37 @@ string lower(string s)
     for (char& c : s) {
         c = std::tolower(c);
     }
+    return s;
 }
 
 // Method to perform the search
 void AdvanceSearch::perform_search(std::string query, ContactsBook &book)
 {
-    // Match the search by first_name, last_name, email_address or mobile_number
-    // query: adn, matches: Adnan, Anodomini, ashely
-    // string.find(char/string) -> index of first occ
-    // consecutive
-    // a = 2; b = 3;  
-    // indices = name.find(q[i]) : if(name.find(q[i]) > indices[indices.size()-1] -> then add i to indices
-    // indices.size() == query.length() -> match = true
+    string q = lower(query);
     for (size_t i = 0; i < book.total_contacts(); i++)
     {
         List<int> indices(15);
-        string name = lower(book[i].get_first_name());
-    for (size_t i = 0; i < book.total_contacts(); i++)
-    {
-        List<int> indices(15);
-        string name = lower(book.get_contacts()->get_first_name());
-        string q = lower(query);
+        string name = lower(book[i].get_first_name() + book[i].get_last_name() + book[i].get_email_address() + book[i].get_mobile_number());
         
-        for (size_t j = 0; j < query.length(); j++)
+        for (size_t j = 0; j < q.length(); j++)
         {
-            int index = name.find(q[j]);
-            if (index == string::npos)
+            // Find all occurrences of q[j] in name
+            size_t pos = 0;
+            while ((pos = name.find(q[j], pos)) != string::npos)
             {
-                break;
-            }
-            // q = abc: a -> b -> c
-            if (indices.is_empty())
-                indices.append(index);
-            else if(index > indices[indices.size() - 1]) {
-                indices.append(index);
+                if (indices.is_empty() || pos > indices[indices.size() - 1]) {
+                    indices.append(pos);
+                }
+                pos++;
             }
         }
-        // Check if all characters in the query have been found
-
-        if(indices.size() == query.length()){
+        if(indices.size() == q.length()){
             searchResults.append(book[i]);
             item_count++;
         }
     }
 }
+
 
 List<string> AdvanceSearch::get_results()
 {
