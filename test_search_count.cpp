@@ -68,38 +68,38 @@ int main()
         std::cout << std::endl;
     }
 
-    // // Test get_search_history
-    // List<HistoryObject> temp = sh.get_search_history();
-    // std::cout << "------------------------------------\n";
-    // std::cout << "Search history: " << std::endl;
-    // for (int i = 0; i < temp.size(); i++)
-    // {
-    //     std::cout << temp[i] << std::endl;
-    // }
+    // Test get_search_history
+    List<HistoryObject> temp = sh.get_search_history();
+    std::cout << "------------------------------------\n";
+    std::cout << "Search history: " << std::endl;
+    for (int i = 0; i < temp.size(); i++)
+    {
+        std::cout << temp[i] << std::endl;
+    }
 
-    // // Test get_searched_contacts
-    // List<Contact> temp2 = sh.get_searched_contacts();
-    // std::cout << "------------------------------------\n";
-    // std::cout << "Searched contacts: " << std::endl;
-    // for (int i = 0; i < temp2.size(); i++)
-    // {
-    //     std::cout << temp2[i] << std::endl;
-    //     std::cout << std::endl;
-    // }
+    // Test get_searched_contacts
+    List<Contact> temp2 = sh.get_searched_contacts();
+    std::cout << "------------------------------------\n";
+    std::cout << "Searched contacts: " << std::endl;
+    for (int i = 0; i < temp2.size(); i++)
+    {
+        std::cout << temp2[i] << std::endl;
+        std::cout << std::endl;
+    }
 
-    // // Test get_top5
-    // List<HistoryObject> temp3 = sh.get_top5();
-    // std::cout << "------------------------------------\n";
-    // std::cout << "Top 5 frequent searches: " << std::endl;
-    // for (int i = 0; i < temp3.size(); i++)
-    // {
-    //     std::cout << temp3[i] << std::endl;
-    // }
+    // Test get_top5
+    List<HistoryObject> temp3 = sh.get_top5();
+    std::cout << "------------------------------------\n";
+    std::cout << "Top 5 frequent searches: " << std::endl;
+    for (int i = 0; i < temp3.size(); i++)
+    {
+        std::cout << temp3[i] << std::endl;
+    }
 
-    // // Test save_history
-    // sh.save_history("history.txt");
-    // // Test save_top5
-    // sh.save_top5("top5.txt");
+    // Test save_history
+    sh.save_history("history.txt");
+    // Test save_top5
+    sh.save_top5("top5.txt");
 
     
 
